@@ -78,6 +78,7 @@ public class DictionaryDaoImpl implements DictionaryDao {
     }
 
     @Override
+    @Transactional
     public void deleteWord(int wordId) {
         String queryStr = "delete from Word as w where w.id = :wordId";
         Query query = em.createQuery(queryStr)
@@ -87,6 +88,7 @@ public class DictionaryDaoImpl implements DictionaryDao {
     }
 
     @Override
+    @Transactional
     public Long getWordCount(String relativeKey, int transType) {
         String queryStr = "select count(*) as row_num "
                 + "from Word as w "

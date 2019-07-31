@@ -2,9 +2,12 @@ package com.tuan.exercise.sprdict.jpa.dao;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import com.tuan.exercise.sprdict.jpa.entity.TransTypeDetail;
 import com.tuan.exercise.sprdict.jpa.entity.Word;
 
+@Transactional
 public interface DictionaryDao {
 
     public List<Word> getWordsRelative(String relativeKey, int transType, int rowStart, int rowCount);

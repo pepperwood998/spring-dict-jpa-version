@@ -55,7 +55,18 @@
     <property name="dataSource" ref="c3p0DataSource" />
     <property name="persistenceUnitName"
       value="spring-dict-persistence" />
+    <property name="jpaVendorAdapter">
+      <bean
+        class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" />
+    </property>
   </bean>
+
+  <bean id="entityManager"
+    class="org.springframework.orm.jpa.JpaTransactionManager">
+    <property name="entityManagerFactory" ref="entityManagerFactory" />
+  </bean>
+  <tx:annotation-driven
+    transaction-manager="entityManager" />
 
   <mvc:interceptors>
     <mvc:interceptor>

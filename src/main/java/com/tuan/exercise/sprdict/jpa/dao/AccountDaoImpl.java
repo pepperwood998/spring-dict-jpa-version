@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
+import javax.transaction.Transactional;
 
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
@@ -17,6 +18,7 @@ public class AccountDaoImpl implements AccountDao {
     private EntityManager em;
 
     @Override
+    @Transactional
     public String isAccountValid(String username, String password) {
         String role = null;
 
