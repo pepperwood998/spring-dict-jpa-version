@@ -89,10 +89,18 @@ public class WordController {
     }
 
     @GetMapping("/delete")
-    public String doDeleteWord(@RequestParam("word-id") int wordId) {
+    public String doDeleteWord(@RequestParam("word-id") int wordId, 
+            @RequestParam(name = "search-word", defaultValue = "") String searchWord,
+            @RequestParam(name = "trans-type", defaultValue = "0") int transType,
+            @RequestParam(name = "page", defaultValue = "1") int page) {
         dictionaryDao.deleteWord(wordId);
 
-        return Web.Direct.getRedirect("/search", null);
+        Map<String, Object> paramMap = new HashMap<>();
+        paramMap.put("search-word", searchWord);
+        paramMap.put("trans-type", transType);
+        paramMap.put("page", page);
+
+        return Web.Direct.getRedirect("/search", paramMap);
     }
 
     @PostMapping("/edit")

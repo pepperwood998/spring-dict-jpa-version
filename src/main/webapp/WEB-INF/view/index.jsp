@@ -20,6 +20,7 @@
 <script>
   var confirmDelete = function(e) {
       var wordId = e.target.getAttribute('data-word-id');
+      var url = e.target.getAttribute('data-url');
       bootbox.confirm({
         message: "Are you sure you want to delete this word?",
         buttons: {
@@ -34,7 +35,7 @@
         },
         callback: function (result) {
           if (result)
-            window.location.href=$("#context-path").val() + "/delete?word-id=" + wordId;
+            window.location.href=url;
         }
       });
     };
@@ -108,12 +109,15 @@
                 </c:url>
                 <c:url value="/delete" var="deleteUrl">
                   <c:param name="word-id" value="${ word.id }"></c:param>
+                  <c:param name="search-word" value="${ searchWord }"></c:param>
+                  <c:param name="trans-type" value="${ curTransType }"></c:param>
+                  <c:param name="page" value="${ curPage }"></c:param>
                 </c:url>
                 <td>
                   <a href="${ detailUrl }"><button
                       type="button" class="btn btn-outline-secondary">Edit</button></a>
                   <button type="button" class="btn text-danger"
-                    onclick="confirmDelete(event)" data-word-id="${ word.id }">Delete</button>
+                    onclick="confirmDelete(event)" data-word-id="${ word.id }" data-url="${ deleteUrl }">Delete</button>
                 </td>
               </c:if>
             </tr>
