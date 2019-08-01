@@ -43,12 +43,8 @@ public class DictionaryDaoImpl implements DictionaryDao {
     @Override
     @Transactional
     public Word getWordById(int id) {
-        String queryStr = "from Word as w "
-                + "where w.id = :id";
-        TypedQuery<Word> query = em.createQuery(queryStr, Word.class)
-                .setParameter("id", id);
 
-        return query.getSingleResult();
+        return em.find(Word.class, id);
     }
 
     @Override
